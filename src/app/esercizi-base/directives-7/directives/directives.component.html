@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-12">
+        <br><br>
+        <ul class="list-group" *appStructuralDirectiveOppostoNgIf="false">
+            <li class="list-group-item" *ngFor="let number of numbers" [appBasicHighligh]="'red'" [defaultColor]="'silver'">
+                {{ number }}
+            </li>
+        </ul>
+    </div>
+</div>
+

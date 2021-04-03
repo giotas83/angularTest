@@ -1,0 +1,11 @@
+:host {
+    display: block; // senza questo non funziona
+    background-color: aquamarine;
+    border: red;
+    padding: 20px;
+}
+
+.active {
+    background-color: crimson;
+    color:antiquewhite;
+}

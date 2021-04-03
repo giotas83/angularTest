@@ -1,0 +1,16 @@
+<app-header (featureSelected)="onNavigate($event)"></app-header>
+
+<div class="container">
+
+  <!-- PROJECT -->
+  <div class="row">
+    <div class="col-md-12">
+      <app-recipes *ngIf="loadedFeature === 'recipe'"></app-recipes>
+      <app-shopping-list *ngIf="loadedFeature === 'shopping-list'"></app-shopping-list>
+    </div>
+  </div>
+
+  <!-- ESERCIZI TEST -->  
+  <app-esercizi-base *ngIf="loadedFeature === 'exercise'"></app-esercizi-base>
+
+</div>

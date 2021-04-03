@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h3>App component esercizi test</h3>
+        <button style="margin-right: 5px;" (click)="eserciziDaMostrare = ESERCIZI_DA_MOSTRARE.BASICS"
+                [ngClass]="{'active': eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.BASICS}">BASICS</button>
+        <button style="margin-right: 5px;" (click)="eserciziDaMostrare = ESERCIZI_DA_MOSTRARE.DATA_BINDING"
+                [ngClass]="{'active': eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.DATA_BINDING}">DATA-BINDING</button>
+        <button style="margin-right: 5px;" (click)="eserciziDaMostrare = ESERCIZI_DA_MOSTRARE.DIRECTIVES"
+                [ngClass]="{'active': eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.DIRECTIVES}">DIRECTIVES</button>
+    </div>
+</div>
+
+
+<div class="row" *ngIf="eserciziDaMostrare === 'basics'">
+    <div class="col-12">
+        <hr>
+        <h4>Data Binding BASIC-2</h4>
+        <app-servers></app-servers>
+    </div>
+</div>
+
+
+<div class="row" *ngIf="eserciziDaMostrare === 'data-binding'">
+    <div class="col-sm-12">
+        <hr>
+        <h4>Dati tra Componenti - dom databind - 5</h4>
+        <app-cockpit (serverCreated)="onServerAdded($event)" (blueprintCreated)="onBlueprintAdded($event)"></app-cockpit>
+        <div class="row">
+            <div class="col-xs-12">
+                <app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElement">
+                    <!-- ng-content in appServerComponent visualizza questo contenuto dove ho inserito il tag <ng-content>-->
+                    <p #contentChildRef>
+                        <strong *ngIf="serverElement.type === 'server'" style="color: red;">{{ serverElement.content }}</strong>
+                        <em *ngIf="serverElement.type === 'blueprint'" style="color: blue;">{{ serverElement.content }}</em>
+                    </p>
+                </app-server-element>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="eserciziDaMostrare === 'directives'">
+    <div class="col-12">
+        <hr>
+        <h4>Directives-7</h4>
+        <app-directives></app-directives>
+    </div>
+</div>
