@@ -12,6 +12,10 @@ import { EserciziBaseComponent } from './esercizi-base/esercizi-base.component';
 import { CockpitComponent } from './esercizi-base/comp-databinding-5/cockpit/cockpit.component';
 import { ServerElementComponent } from './esercizi-base/comp-databinding-5/server-element/server-element.component';
 import { DirectivesComponent } from './esercizi-base/directives-7/directives/directives.component';
+import { DependencyInjectionComponent } from './esercizi-base/services-depend-injection-9/dependency-injection/dependency-injection.component';
+import { NewAccountComponent } from './esercizi-base/services-depend-injection-9/dependency-injection/new-account/new-account.component';
+import { AccountComponent } from './esercizi-base/services-depend-injection-9/dependency-injection/account/account.component';
+
 
 // ESERCIZI-TEST DIRECTIVES
 import { BasicHighlightDirective } from './esercizi-base/directives-7/directives/basic-highlight.directive';
@@ -26,7 +30,6 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DropdownDirective } from 'src/shared/dropdown.directice';
-
 // APP DIRETTIVE
 
 
@@ -55,6 +58,9 @@ import { DropdownDirective } from 'src/shared/dropdown.directice';
     CockpitComponent,
     ServerElementComponent,
     DirectivesComponent,
+    DependencyInjectionComponent,
+    NewAccountComponent,
+    AccountComponent,
 
   ],
   imports: [

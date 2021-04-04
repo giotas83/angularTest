@@ -7,11 +7,13 @@
                 [ngClass]="{'active': eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.DATA_BINDING}">DATA-BINDING</button>
         <button style="margin-right: 5px;" (click)="eserciziDaMostrare = ESERCIZI_DA_MOSTRARE.DIRECTIVES"
                 [ngClass]="{'active': eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.DIRECTIVES}">DIRECTIVES</button>
+        <button style="margin-right: 5px;" (click)="eserciziDaMostrare = ESERCIZI_DA_MOSTRARE.SERVICES"
+                [ngClass]="{'active': eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.SERVICES}">SERVICES - DEPENDENCY INJ</button>
     </div>
 </div>
 
 
-<div class="row" *ngIf="eserciziDaMostrare === 'basics'">
+<div class="row" *ngIf="eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.BASICS">
     <div class="col-12">
         <hr>
         <h4>Data Binding BASIC-2</h4>
@@ -20,7 +22,7 @@
 </div>
 
 
-<div class="row" *ngIf="eserciziDaMostrare === 'data-binding'">
+<div class="row" *ngIf="eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.DATA_BINDING">
     <div class="col-sm-12">
         <hr>
         <h4>Dati tra Componenti - dom databind - 5</h4>
@@ -39,10 +41,19 @@
     </div>
 </div>
 
-<div class="row" *ngIf="eserciziDaMostrare === 'directives'">
+<div class="row" *ngIf="eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.DIRECTIVES">
     <div class="col-12">
         <hr>
         <h4>Directives-7</h4>
         <app-directives></app-directives>
     </div>
 </div>
+
+<div class="row" *ngIf="eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.SERVICES">
+    <div class="col-12">
+        <hr>
+        <h4>Services - Dependency Injection - 9</h4>
+        <app-dependency-injection></app-dependency-injection>
+    </div>
+</div>
+

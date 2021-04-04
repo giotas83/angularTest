@@ -11,7 +11,8 @@ export class EserciziBaseComponent implements OnInit {
   public readonly ESERCIZI_DA_MOSTRARE: ITipoEserciziDaMostrare = {
     BASICS: 'basics',
     DATA_BINDING: 'data-binding',
-    DIRECTIVES: 'directives'
+    DIRECTIVES: 'directives',
+    SERVICES: 'services'
   };
 
 
@@ -44,11 +45,12 @@ export class EserciziBaseComponent implements OnInit {
 
 }
 
-type TipoEserciziDaMostrare = 'basics' | 'data-binding' | 'directives';
+type TipoEserciziDaMostrare = 'basics' | 'data-binding' | 'directives' | 'services';
 
 interface ITipoEserciziDaMostrare {
   BASICS: TipoEserciziDaMostrare;
   DATA_BINDING: TipoEserciziDaMostrare;
   DIRECTIVES: TipoEserciziDaMostrare;
+  SERVICES: TipoEserciziDaMostrare;
 }
 
