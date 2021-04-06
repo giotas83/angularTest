@@ -1,1 +1,30 @@
-<p>observable works!</p>
+<div class="w-100">
+    <button type="button" (click)="startInterval()">Start Interval</button>
+    <button type="button" (click)="stopIntervalAndReset()">Stop and Reset Interval</button>
+    <p>
+    Interval: {{interval}}
+    </p>
+</div>
+<div class="w-100">
+    <button type="button" (click)="startCustomInterval()">Start  Custom Interval</button>
+    <button type="button" (click)="stopCustomInterval()">Stop Custom Interval</button>
+    <p>
+    Custom Interval: {{customInterval}}
+    </p>
+</div>
+<div class="w-100">
+    <button type="button" (click)="activateSubject()">Start Subject</button>
+    <button type="button" (click)="completeSubject()">Complete Subject</button>
+    <br>
+    <button type="button" (click)="subscribeSubject1()">Subscribe Subject 1</button>
+    <button type="button" (click)="subscribeSubject2()">Subscribe Subject 2</button>
+    <br>
+    <button type="button" (click)="cancelSubject1()">Stop Subject 1</button>
+    <button type="button" (click)="cancelSubject2()">Stop Subject 2</button>
+    <p>
+        <b [ngStyle]="{'color': subject1Subscrived ? 'green' : 'red'}">Subject-1</b>: {{subject1}}
+    </p>
+    <p>
+       <b [ngStyle]="{'color': subject2Subscrived ? 'green' : 'red'}">Subject-2</b> : {{subject2}}
+    </p>
+</div>
