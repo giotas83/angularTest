@@ -1,21 +1,14 @@
 <div class="row">
     <div class="col-sm-12">
         <h3>App component esercizi test</h3>
-        <button style="margin-right: 5px;" (click)="eserciziDaMostrare = ESERCIZI_DA_MOSTRARE.BASICS"
-                [ngClass]="{'active': eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.BASICS}">BASICS</button>
-        <button style="margin-right: 5px;" (click)="eserciziDaMostrare = ESERCIZI_DA_MOSTRARE.DATA_BINDING"
-                [ngClass]="{'active': eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.DATA_BINDING}">DATA-BINDING</button>
-        <button style="margin-right: 5px;" (click)="eserciziDaMostrare = ESERCIZI_DA_MOSTRARE.DIRECTIVES"
-                [ngClass]="{'active': eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.DIRECTIVES}">DIRECTIVES</button>
-        <button style="margin-right: 5px;" (click)="eserciziDaMostrare = ESERCIZI_DA_MOSTRARE.SERVICES"
-                [ngClass]="{'active': eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.SERVICES}">SERVICES - DEPENDENCY INJ</button>
+        <button *ngFor="let button of navigationButtons" [style]="button.style" [ngClass]="button.ngClass" (click)="button.click()"> {{ button.label}} </button>
+        <hr>
     </div>
 </div>
 
 
 <div class="row" *ngIf="eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.BASICS">
     <div class="col-12">
-        <hr>
         <h4>Data Binding BASIC-2</h4>
         <app-servers></app-servers>
     </div>
@@ -24,7 +17,6 @@
 
 <div class="row" *ngIf="eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.DATA_BINDING">
     <div class="col-sm-12">
-        <hr>
         <h4>Dati tra Componenti - dom databind - 5</h4>
         <app-cockpit (serverCreated)="onServerAdded($event)" (blueprintCreated)="onBlueprintAdded($event)"></app-cockpit>
         <div class="row">
@@ -43,7 +35,6 @@
 
 <div class="row" *ngIf="eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.DIRECTIVES">
     <div class="col-12">
-        <hr>
         <h4>Directives-7</h4>
         <app-directives></app-directives>
     </div>
@@ -51,9 +42,17 @@
 
 <div class="row" *ngIf="eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.SERVICES">
     <div class="col-12">
-        <hr>
         <h4>Services - Dependency Injection - 9</h4>
         <app-dependency-injection></app-dependency-injection>
     </div>
 </div>
+
+<div class="row" *ngIf="eserciziDaMostrare === ESERCIZI_DA_MOSTRARE.OBSERVABLE">
+    <div class="col-12">
+        <h4>Observables - 13</h4>
+        <app-observable></app-observable>
+    </div>
+</div>
+
+
 

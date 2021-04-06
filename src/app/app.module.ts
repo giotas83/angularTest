@@ -15,6 +15,7 @@ import { DirectivesComponent } from './esercizi-base/directives-7/directives/dir
 import { DependencyInjectionComponent } from './esercizi-base/services-depend-injection-9/dependency-injection/dependency-injection.component';
 import { NewAccountComponent } from './esercizi-base/services-depend-injection-9/dependency-injection/new-account/new-account.component';
 import { AccountComponent } from './esercizi-base/services-depend-injection-9/dependency-injection/account/account.component';
+import { ObservableComponent } from './esercizi-base/observable-13/observable/observable.component';
 
 
 // ESERCIZI-TEST DIRECTIVES
@@ -29,8 +30,8 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { DropdownDirective } from 'src/shared/dropdown.directice';
 // APP DIRETTIVE
+import { DropdownDirective } from 'src/shared/dropdown.directice';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { DropdownDirective } from 'src/shared/dropdown.directice';
     DependencyInjectionComponent,
     NewAccountComponent,
     AccountComponent,
+    ObservableComponent,
 
   ],
   imports: [
