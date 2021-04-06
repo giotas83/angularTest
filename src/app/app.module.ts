@@ -15,6 +15,7 @@ import { DirectivesComponent } from './esercizi-base/directives-7/directives/dir
 import { DependencyInjectionComponent } from './esercizi-base/services-depend-injection-9/dependency-injection/dependency-injection.component';
 import { NewAccountComponent } from './esercizi-base/services-depend-injection-9/dependency-injection/new-account/new-account.component';
 import { AccountComponent } from './esercizi-base/services-depend-injection-9/dependency-injection/account/account.component';
+import { RoutingComponent } from './esercizi-base/routing-11/routing/routing.component';
 import { ObservableComponent } from './esercizi-base/observable-13/observable/observable.component';
 
 
@@ -23,15 +24,16 @@ import { BasicHighlightDirective } from './esercizi-base/directives-7/directives
 import { StructuralDirective } from './esercizi-base/directives-7/directives/structural.directive';
 
 // APP COMPONENTS
-import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
+import { HeaderComponent } from './app-project/header/header.component';
+import { RecipesComponent } from './app-project/recipes/recipes.component';
+import { RecipeListComponent } from './app-project/recipes/recipe-list/recipe-list.component';
+import { RecipeDetailComponent } from './app-project/recipes/recipe-detail/recipe-detail.component';
+import { RecipeItemComponent } from './app-project/recipes/recipe-list/recipe-item/recipe-item.component';
+import { ShoppingListComponent } from './app-project/shopping-list/shopping-list.component';
+import { ShoppingEditComponent } from './app-project/shopping-list/shopping-edit/shopping-edit.component';
 // APP DIRETTIVE
 import { DropdownDirective } from 'src/shared/dropdown.directice';
+import { PageNotFoundComponent } from './app-project/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import { DropdownDirective } from 'src/shared/dropdown.directice';
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
+    PageNotFoundComponent,
 
     // APP DIRETTIVE
     DropdownDirective,
@@ -63,6 +66,8 @@ import { DropdownDirective } from 'src/shared/dropdown.directice';
     NewAccountComponent,
     AccountComponent,
     ObservableComponent,
+    RoutingComponent,
+    
 
   ],
   imports: [

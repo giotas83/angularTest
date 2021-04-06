@@ -13,6 +13,7 @@ export class EserciziBaseComponent implements OnInit {
     DATA_BINDING: 'data-binding',
     DIRECTIVES: 'directives',
     SERVICES: 'services',
+    ROUTING: 'routing',
     OBSERVABLE: 'observable'
   };
 
@@ -42,6 +43,12 @@ export class EserciziBaseComponent implements OnInit {
       ngClass: {['active']: this.eserciziDaMostrare === this.ESERCIZI_DA_MOSTRARE.SERVICES},
       label: 'SERVICES',
       click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.SERVICES; }
+    },
+    {
+      style: 'margin-right: 5px;',
+      ngClass: {['active']: this.eserciziDaMostrare === this.ESERCIZI_DA_MOSTRARE.ROUTING},
+      label: 'ROUTING',
+      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.ROUTING; }
     },
     {
       style: 'margin-right: 5px;',
@@ -79,13 +86,14 @@ export class EserciziBaseComponent implements OnInit {
 
 }
 
-type TipoEserciziDaMostrare = 'basics' | 'data-binding' | 'directives' | 'services' | 'observable';
+type TipoEserciziDaMostrare = 'basics' | 'data-binding' | 'directives' | 'services' | 'observable' | 'routing';
 
 interface ITipoEserciziDaMostrare {
   BASICS: TipoEserciziDaMostrare;
   DATA_BINDING: TipoEserciziDaMostrare;
   DIRECTIVES: TipoEserciziDaMostrare;
   SERVICES: TipoEserciziDaMostrare;
+  ROUTING: TipoEserciziDaMostrare;
   OBSERVABLE: TipoEserciziDaMostrare;
 }
 

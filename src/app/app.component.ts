@@ -7,11 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  loadedFeature: FeatureSelected = 'recipe';
+  constructor() {
 
-  public onNavigate(feature: 'recipe' | 'shopping-list') {
-    this.loadedFeature = feature;
   }
+
+
 }
 
-type FeatureSelected = 'exercise' | 'recipe' | 'shopping-list';
