@@ -24,6 +24,10 @@ export class RecipeService {
 
     }
 
+    getRecipe(index: number): Recipe {
+        return this.recipes[index];
+    }
+
     getRecipes(): Recipe[] {
         return this.recipes.slice(); // copia, tolto riferimento
     }
