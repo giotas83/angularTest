@@ -37,6 +37,7 @@ import { PageNotFoundComponent } from './app-project/page-not-found/page-not-fou
 import { RoutingAccessComponent } from './esercizi-base/routing-11/routing-access/routing-access.component';
 import { RecipeStartComponent } from './app-project/recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './app-project/recipes/recipe-edit/recipe-edit.component';
+import { FormsComponent } from './esercizi-base/forms-15/forms/forms.component';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { RecipeEditComponent } from './app-project/recipes/recipe-edit/recipe-ed
     ObservableComponent,
     RoutingComponent,
     RoutingAccessComponent,
+    FormsComponent,
     
 
 

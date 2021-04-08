@@ -14,7 +14,8 @@ export class EserciziBaseComponent implements OnInit {
     DIRECTIVES: 'directives',
     SERVICES: 'services',
     ROUTING: 'routing',
-    OBSERVABLE: 'observable'
+    OBSERVABLE: 'observable',
+    FORMS: 'forms'
   };
 
   public eserciziDaMostrare: TipoEserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.BASICS;
@@ -55,6 +56,12 @@ export class EserciziBaseComponent implements OnInit {
       ngClass: {['active']: this.eserciziDaMostrare === this.ESERCIZI_DA_MOSTRARE.OBSERVABLE},
       label: 'OBSERVABLE',
       click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.OBSERVABLE; }
+    },
+    {
+      style: 'margin-right: 5px;',
+      ngClass: {['active']: this.eserciziDaMostrare === this.ESERCIZI_DA_MOSTRARE.FORMS},
+      label: 'FORMS',
+      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.FORMS; }
     }
   ];
 
@@ -86,7 +93,7 @@ export class EserciziBaseComponent implements OnInit {
 
 }
 
-type TipoEserciziDaMostrare = 'basics' | 'data-binding' | 'directives' | 'services' | 'observable' | 'routing';
+type TipoEserciziDaMostrare = 'basics' | 'data-binding' | 'directives' | 'services' | 'observable' | 'routing' | 'forms';
 
 interface ITipoEserciziDaMostrare {
   BASICS: TipoEserciziDaMostrare;
@@ -95,5 +102,6 @@ interface ITipoEserciziDaMostrare {
   SERVICES: TipoEserciziDaMostrare;
   ROUTING: TipoEserciziDaMostrare;
   OBSERVABLE: TipoEserciziDaMostrare;
+  FORMS: TipoEserciziDaMostrare;
 }
 
