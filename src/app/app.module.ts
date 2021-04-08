@@ -34,6 +34,7 @@ import { ShoppingEditComponent } from './app-project/shopping-list/shopping-edit
 // APP DIRETTIVE
 import { DropdownDirective } from 'src/shared/dropdown.directice';
 import { PageNotFoundComponent } from './app-project/page-not-found/page-not-found.component';
+import { RoutingAccessComponent } from './esercizi-base/routing-11/routing-access/routing-access.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { PageNotFoundComponent } from './app-project/page-not-found/page-not-fou
     AccountComponent,
     ObservableComponent,
     RoutingComponent,
-    
+    RoutingAccessComponent,
+
 
   ],
   imports: [

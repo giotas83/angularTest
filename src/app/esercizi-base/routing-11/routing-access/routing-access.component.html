@@ -1,0 +1,16 @@
+<p>routing-access works!</p>
+
+<p>Inserito anche un canDeactivate, chiedo conferma se uscire se ho modificato il campi in input</p>
+<label>
+    Testo Qualsiasi
+    <input type="text" [(ngModel)]="inputValue"> 
+</label>
+
+<p>
+    DATI STATICI PASSATI DALLA ROUTE: {{ dataFromRoute }}
+</p>
+<p>
+    DATI DINAMICI REUPERATI CON UN SERVIZIO E PASSATI NELLA ROUTE CON RESOLVE: {{ dataDinamiciRoute }}
+</p>
+
+<button (click)="goToExercisePage()">GO TO EXERCISE PAGE</button>
