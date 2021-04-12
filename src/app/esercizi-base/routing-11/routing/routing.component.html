@@ -3,6 +3,8 @@
 <button (click)="login()">LOGIN</button>
 <button (click)="logOut()">LOGOUT</button>
 
-LOGGATO: {{ isLogged }}
+<p>
+    LOGGATO: <span [ngStyle]="{'color': isLogged ? 'green': 'red'}">{{ isLogged }}</span>
+</p>
 
 <button (click)="goToTestRoute()">GO TO ROUTE AUTH</button>
