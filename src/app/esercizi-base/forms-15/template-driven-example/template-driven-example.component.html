@@ -1,0 +1,44 @@
+
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+    <div id="user-data"  ngModelGroup="userData" #refGroup="ngModelGroup"> <!-- raggruppo i 2 input con ngModelGroup -->
+        <div class="form-group"> 
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" class="form-control" ngModel required #refName="ngModel">
+            <p *ngIf="!refName.valid && refName.touched" style="color: red;">Valore non corretto</p>
+        </div>
+        <button class="btn btn-warning" type="button" (click)="suggestUserName()">Suggest an Username</button>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" class="form-control" ngModel required email #refEmail="ngModel">
+            <p *ngIf="refEmail.invalid && refEmail.touched" style="color: red;">Valore non corretto</p>
+        </div>
+    </div>
+    <p style="color: blue; background-color: whitesmoke;" *ngIf="refGroup.invalid && refGroup.touched">Riferimento al gruppo username e Email, il gruppo non è valido</p>
+
+    <div class="form-group">
+        <div class="radio" *ngFor="let g of genders"> 
+            <label>
+                <input type="radio" name="gender" [value]="g" ngModel required>{{ g }}
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="secret">Secret Question</label>
+        <select name="secret" id="secret" class="form-control" [ngModel]="domandaPredefinita" required> <!-- utilizzo [ngModel] al posto di ngModel per dare un valore predefinito, scrivendo non modifico la variabile-->
+            <option value="pet">Your first Pet?</option>
+            <option value="teacher">Your first teacher?</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <textarea class="form-control" name="questionAnswer" rows="3" [(ngModel)]="answer" required></textarea> <!-- two way, scrivendo nell input viene modificata anche la variabile-->
+        <p>Risposta: {{ answer }}</p>
+    </div>
+
+    <app-test-input-component [nome]="model?.nome" (evt)="model.nome = $event"></app-test-input-component>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+
+</form>

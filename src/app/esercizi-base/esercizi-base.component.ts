@@ -23,45 +23,45 @@ export class EserciziBaseComponent implements OnInit {
   public readonly navigationButtons = [
     {
       style: 'margin-right: 5px;',
-      ngClass: {['active']: this.eserciziDaMostrare === this.ESERCIZI_DA_MOSTRARE.BASICS},
       label: 'BASICS',
-      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.BASICS; }
+      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.BASICS;  },
+      tipoEsercizio: this.ESERCIZI_DA_MOSTRARE.BASICS
     },
     {
       style: 'margin-right: 5px;',
-      ngClass: {['active']: this.eserciziDaMostrare === this.ESERCIZI_DA_MOSTRARE.DATA_BINDING},
       label: 'DATA BINDING',
-      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.DATA_BINDING; }
+      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.DATA_BINDING; },
+      tipoEsercizio: this.ESERCIZI_DA_MOSTRARE.DATA_BINDING
     },
     {
       style: 'margin-right: 5px;',
-      ngClass: {['active']: this.eserciziDaMostrare === this.ESERCIZI_DA_MOSTRARE.DIRECTIVES},
       label: 'DIRECTIVES',
-      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.DIRECTIVES; }
+      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.DIRECTIVES; },
+      tipoEsercizio: this.ESERCIZI_DA_MOSTRARE.DIRECTIVES
     },
     {
       style: 'margin-right: 5px;',
-      ngClass: {['active']: this.eserciziDaMostrare === this.ESERCIZI_DA_MOSTRARE.SERVICES},
       label: 'SERVICES',
-      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.SERVICES; }
+      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.SERVICES; },
+      tipoEsercizio: this.ESERCIZI_DA_MOSTRARE.SERVICES
     },
     {
       style: 'margin-right: 5px;',
-      ngClass: {['active']: this.eserciziDaMostrare === this.ESERCIZI_DA_MOSTRARE.ROUTING},
       label: 'ROUTING',
-      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.ROUTING; }
+      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.ROUTING; },
+      tipoEsercizio: this.ESERCIZI_DA_MOSTRARE.ROUTING
     },
     {
       style: 'margin-right: 5px;',
-      ngClass: {['active']: this.eserciziDaMostrare === this.ESERCIZI_DA_MOSTRARE.OBSERVABLE},
       label: 'OBSERVABLE',
-      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.OBSERVABLE; }
+      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.OBSERVABLE; },
+      tipoEsercizio:  this.ESERCIZI_DA_MOSTRARE.OBSERVABLE
     },
     {
       style: 'margin-right: 5px;',
-      ngClass: {['active']: this.eserciziDaMostrare === this.ESERCIZI_DA_MOSTRARE.FORMS},
       label: 'FORMS',
-      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.FORMS; }
+      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.FORMS; },
+      tipoEsercizio: this.ESERCIZI_DA_MOSTRARE.FORMS
     }
   ];
 

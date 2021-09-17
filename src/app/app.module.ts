@@ -38,6 +38,9 @@ import { RoutingAccessComponent } from './esercizi-base/routing-11/routing-acces
 import { RecipeStartComponent } from './app-project/recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './app-project/recipes/recipe-edit/recipe-edit.component';
 import { FormsComponent } from './esercizi-base/forms-15/forms/forms.component';
+import { TemplateDrivenExampleComponent } from './esercizi-base/forms-15/template-driven-example/template-driven-example.component';
+import { ReactiveFormExampleComponent } from './esercizi-base/forms-15/reactive-form-example/reactive-form-example.component';
+import { TestInputComponent } from './esercizi-base/forms-15/template-driven-example/test-input.component';
 
 
 @NgModule({
@@ -75,7 +78,9 @@ import { FormsComponent } from './esercizi-base/forms-15/forms/forms.component';
     RoutingComponent,
     RoutingAccessComponent,
     FormsComponent,
-    
+    TemplateDrivenExampleComponent,
+    ReactiveFormExampleComponent,
+    TestInputComponent
 
 
   ],

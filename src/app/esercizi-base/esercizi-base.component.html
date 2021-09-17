@@ -1,7 +1,12 @@
 <div class="row">
     <div class="col-sm-12">
         <h3>App component esercizi test</h3>
-        <button *ngFor="let button of navigationButtons" [style]="button.style" [ngClass]="button.ngClass" (click)="button.click()"> {{ button.label}} </button>
+        <button *ngFor="let button of navigationButtons" 
+                style="margin-right: 5px;"
+                [class.active]="button.tipoEsercizio === eserciziDaMostrare" 
+                (click)="button.click()">
+            {{ button.label}}
+        </button>
         <hr>
     </div>
 </div>
