@@ -17,7 +17,7 @@
     <p style="color: blue; background-color: whitesmoke;" *ngIf="refGroup.invalid && refGroup.touched">Riferimento al gruppo username e Email, il gruppo non è valido</p>
 
     <div class="form-group">
-        <div class="radio" *ngFor="let g of genders"> 
+        <div class="radio" *ngFor="let g of genders">
             <label>
                 <input type="radio" name="gender" [value]="g" ngModel required>{{ g }}
             </label>
@@ -39,6 +39,20 @@
 
     <app-test-input-component [nome]="model?.nome" (evt)="model.nome = $event"></app-test-input-component>
 
-    <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+    <div>
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+        <button class="btn btn-light" type="button" (click)="resetForm()">Reset</button>
+    </div>
 
 </form>
+
+<div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+        <h3>Your data</h3>
+        <p>Username: {{user.username}}</p>
+        <p>Mail: {{user.email}}</p>
+        <p>Secret Question: {{user.secretQuestion}}</p>
+        <p>Answer: {{user.answer}}</p>
+        <p>Gender: {{user.gender}}</p>
+    </div>
+</div>

@@ -10,14 +10,24 @@ export class TemplateDrivenExampleComponent implements OnInit {
 
   @ViewChild('f', {static: false}) signupForm: NgForm; // static: true si vadrà già nell ngOnInit
 
+  public submitted: boolean = false;
+
   public domandaPredefinita = 'pet';
   public answer = '';
   public genders = ['male', 'female'];
 
   public model;
+  public user;
 
   constructor() {
     this.model = { nome: ''};
+    this.user = {
+      username: '',
+      email: '',
+      secretQuestion: '',
+      answer: '',
+      gender: ''
+    }
    }
 
   ngOnInit() {
@@ -30,6 +40,15 @@ export class TemplateDrivenExampleComponent implements OnInit {
 
     console.warn('nome');
     console.log( 'il nome è: ', this.model.nome);
+
+    this.user.username = this.signupForm.value.userData.username;
+    this.user.email = this.signupForm.value.userData.email;
+    this.user.secretQuestion = this.signupForm.value.secret;
+    this.user.answer = this.signupForm.value.questionAnswer;
+    this.user.gender = this.signupForm.value.gender;
+
+    this.submitted = true;
+    this.resetForm();
   }
 
   suggestUserName() {
@@ -49,6 +68,10 @@ export class TemplateDrivenExampleComponent implements OnInit {
     // così invece modifico un solo valore senza mpdificare gli altri
     // devo questo metodo è presente nel formGroup, quindi devo accedere li per trovarlo
     (this.signupForm.form as FormGroup).patchValue({userData: { username: usernameModificato}});
+  }
+
+  public resetForm(): void {
+    this.signupForm.reset();
   }
 
 }
