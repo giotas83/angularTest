@@ -26,7 +26,8 @@ export class TemplateDrivenExampleComponent implements OnInit {
       email: '',
       secretQuestion: '',
       answer: '',
-      gender: ''
+      gender: '',
+      testInput: ''
     }
    }
 
@@ -46,6 +47,7 @@ export class TemplateDrivenExampleComponent implements OnInit {
     this.user.secretQuestion = this.signupForm.value.secret;
     this.user.answer = this.signupForm.value.questionAnswer;
     this.user.gender = this.signupForm.value.gender;
+    this.user.testInput = this.signupForm.value.inputTest;
 
     this.submitted = true;
     this.resetForm();
