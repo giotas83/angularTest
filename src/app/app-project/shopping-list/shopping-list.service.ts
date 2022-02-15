@@ -8,6 +8,7 @@ import { Ingredient } from 'src/shared/classes';
 export class ShoppingListService {
 
     public ingredientsChanged: Subject<Ingredient[]> = new Subject<Ingredient[]>();
+    public startEditing: Subject<number> = new Subject<number>();
 
     private ingredients: Ingredient[] = [
         new Ingredient('Apples', 5),
@@ -19,7 +20,11 @@ export class ShoppingListService {
     }
 
     getIngredients(): Ingredient[] {
-        return this.ingredients.slice();
+        return this.ingredients.slice(); // copia array
+    }
+
+    getIngredient(index: number): Ingredient {
+        return this.ingredients[index];
     }
 
     public addIngredient(ingredient: Ingredient): void {
