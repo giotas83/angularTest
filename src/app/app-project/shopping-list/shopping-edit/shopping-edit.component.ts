@@ -45,6 +45,18 @@ export class ShoppingEditComponent implements OnInit {
     } else {
       this.shoppingListService.addIngredient(ingredient);
     }
+    this.resetForm();
+  }
+
+  public onDelete(): void {
+    this.shoppingListService.deleteIngredient(this.editedItemIndex);
+    this.resetForm();
+
+  }
+
+  public resetForm(): void {
+    this.form.reset();
+    this.editMode = false;
   }
 
 }
