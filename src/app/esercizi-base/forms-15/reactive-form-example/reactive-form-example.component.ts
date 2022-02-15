@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
+import { CustomValidators } from './customValidators';
 
 @Component({
   selector: 'app-reactive-form-example',
@@ -13,11 +14,7 @@ export class ReactiveFormExampleComponent implements OnInit, OnDestroy {
 
   public genders: string[] = ['male', 'female'];
 
-  // per validatori custom
-  private forbiddenNames: string[] = ['giovanni', 'paola'];
-  private forbiddenEmails: string[] = ['test@test.com', 'prova@prova.com'];
-
-  get hobbiesControls() {
+    get hobbiesControls() {
     return (this.form.get('hobbies') as FormArray).controls;
   }
 
@@ -47,11 +44,12 @@ export class ReactiveFormExampleComponent implements OnInit, OnDestroy {
       this.formValueChangeSubs.unsubscribe();
   }
 
+  // i validatori sono in una classe statica CustomValidators, fatto così per non appesantire il ts e inserire i metodi qui
   public createForm(): void {
     this.form = new FormGroup({
       'userData': new FormGroup({
-        'username': new FormControl(null, [Validators.required, this.forbiddenNamesValidator.bind(this)]),
-        'email': new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmailsAsyncValidator.bind(this))
+        'username': new FormControl(null, [Validators.required, CustomValidators.forbiddenNamesValidator.bind(this)]),
+        'email': new FormControl(null, [Validators.required, Validators.email], CustomValidators.forbiddenEmailsAsyncValidator.bind(this))
       }),
       'gender': new FormControl('male'),
       'hobbies': new FormArray([])
@@ -88,27 +86,6 @@ export class ReactiveFormExampleComponent implements OnInit, OnDestroy {
     });
   }
 
-
-  // validatore custom - scateno un errore se inserisco un nome vietato
-  private forbiddenNamesValidator(control: FormControl): {[s: string]: boolean} {
-    if(this.forbiddenNames.indexOf(control.value) !== -1) {
-      return {'nameIsForbidden': true};
-    }
-    return null; // non si passa oggetto con false !
-  }
-
-  // validatore custom asincrono(se devo chiamare un servizio ad esempio, simulo con setTimeout)
-  private forbiddenEmailsAsyncValidator(control: FormControl): Promise<any> | Observable<any> {
-    return new Promise( (resolve, reject) => {
-      setTimeout( () => {
-        if(this.forbiddenEmails.indexOf(control.value) !== -1) {
-          resolve({'forbiddenEmail': true});
-        } else {
-          resolve(null);
-        }
-      }, 1500);
-    });
-  }
 
   public onSubmit() {
     console.log(this.form);
