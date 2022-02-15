@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-reactive-form-example',
@@ -12,8 +13,9 @@ export class ReactiveFormExampleComponent implements OnInit {
 
   public genders: string[] = ['male', 'female'];
 
-  // per validatore nomi vietati
+  // per validatori custom
   private forbiddenNames: string[] = ['giovanni', 'paola'];
+  private forbiddenEmails: string[] = ['test@test.com', 'prova@prova.com'];
 
   get hobbiesControls() {
     return (this.form.get('hobbies') as FormArray).controls;
@@ -29,7 +31,7 @@ export class ReactiveFormExampleComponent implements OnInit {
     this.form = new FormGroup({
       'userData': new FormGroup({
         'username': new FormControl(null, [Validators.required, this.forbiddenNamesValidator.bind(this)]),
-        'email': new FormControl(null, [Validators.required, Validators.email])
+        'email': new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmailsAsyncValidator.bind(this))
       }),
       'gender': new FormControl('male'),
       'hobbies': new FormArray([])
@@ -47,6 +49,19 @@ export class ReactiveFormExampleComponent implements OnInit {
       return {'nameIsForbidden': true};
     }
     return null; // non si passa oggetto con false !
+  }
+
+  // validatore custom asincrono(se devo chiamare un servizio ad esempio, simulo con setTimeout)
+  private forbiddenEmailsAsyncValidator(control: FormControl): Promise<any> | Observable<any> {
+    return new Promise( (resolve, reject) => {
+      setTimeout( () => {
+        if(this.forbiddenEmails.indexOf(control.value) !== -1) {
+          resolve({'forbiddenEmail': true});
+        } else {
+          resolve(null);
+        }
+      }, 1500);
+    });
   }
 
   public onSubmit() {

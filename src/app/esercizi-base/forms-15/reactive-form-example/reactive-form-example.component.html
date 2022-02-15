@@ -19,6 +19,7 @@
                     <input type="email" id="email" class="form-control" formControlName="email">
                     <span class="help-block" *ngIf="!form.get('userData.email').valid && form.get('userData.email').touched">
                         Enter a valid email
+                        <span *ngIf="form.get('userData.email').errors?.forbiddenEmail"> is Forbidden !</span> <!-- utilizzato async validator-->
                     </span>
                 </div>
             </div>
