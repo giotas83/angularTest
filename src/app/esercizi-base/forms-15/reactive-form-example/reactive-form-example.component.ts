@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-reactive-form-example',
   templateUrl: './reactive-form-example.component.html',
   styleUrls: ['./reactive-form-example.component.scss']
 })
-export class ReactiveFormExampleComponent implements OnInit {
+export class ReactiveFormExampleComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
 
@@ -21,10 +21,30 @@ export class ReactiveFormExampleComponent implements OnInit {
     return (this.form.get('hobbies') as FormArray).controls;
   }
 
+  // Subscriptions
+  private formValueChangeSubs: Subscription;
+  private formStatusChangeSubs: Subscription;
+
   constructor() { }
 
   ngOnInit() {
     this.createForm();
+
+    // sottoscrivo al valueChange di tutto il form
+    // posso anche sottoscrivermi ai singoli controlli
+    this.formValueChangeSubs = this.form.valueChanges.subscribe(
+      (val: {[key: string]: any}) => console.log('Obj al value change del form: ', val)
+    );
+
+    // sottoscrivo status change, INVALID, VALID, PENDING (ad esempio è pending se sta aspettando un validatore asincrono, che arriva dopo)
+    this.formStatusChangeSubs = this.form.statusChanges.subscribe(
+      (status: string) => console.log('String al cambio stato del form: ', status)
+    );
+  }
+
+  ngOnDestroy(): void {
+      this.formValueChangeSubs.unsubscribe();
+      this.formValueChangeSubs.unsubscribe();
   }
 
   public createForm(): void {
