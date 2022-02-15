@@ -34,9 +34,15 @@ export class ShoppingListService {
 
 
     public addIngredients(ingredients: Ingredient[]) {
+        // this.ingredients.push(...ingredients);
         for (const ingredient of ingredients) {
            this.modifyOrAddIngredient(ingredient);
         }
+        this.ingredientsChanged.next(this.ingredients.slice());
+    }
+
+    updateIngredient(index: number, newIngredient: Ingredient) {
+        this.ingredients[index] = newIngredient;
         this.ingredientsChanged.next(this.ingredients.slice());
     }
 
