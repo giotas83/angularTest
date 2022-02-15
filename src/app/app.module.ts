@@ -32,7 +32,7 @@ import { RecipeItemComponent } from './app-project/recipes/recipe-list/recipe-it
 import { ShoppingListComponent } from './app-project/shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './app-project/shopping-list/shopping-edit/shopping-edit.component';
 // APP DIRETTIVE
-import { DropdownDirective } from 'src/shared/dropdown.directice';
+import { DropdownDirective } from 'src/shared/dropdown.directive';
 import { PageNotFoundComponent } from './app-project/page-not-found/page-not-found.component';
 import { RoutingAccessComponent } from './esercizi-base/routing-11/routing-access/routing-access.component';
 import { RecipeStartComponent } from './app-project/recipes/recipe-start/recipe-start.component';
