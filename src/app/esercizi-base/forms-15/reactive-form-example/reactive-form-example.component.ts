@@ -63,6 +63,29 @@ export class ReactiveFormExampleComponent implements OnInit, OnDestroy {
     (<FormArray>this.form.get('hobbies')).push(control);
   }
 
+  // setto i valori del form, sono abbligato a inserire tutto il formGroup
+  public setFormValues() {
+    // (<FormArray>this.form.get('hobbies')).push(new FormControl(null)); se voglio aggiungere in hobbies prima devo aggiungere il formControl
+    this.form.setValue({
+      'userData': {
+        'username': 'Pippo',
+        'email': 'ciao@ciao.com'
+      },
+      'gender': 'female',
+      'hobbies': [] // ['calcio']  se voglio aggiungere un valore
+    });
+  }
+
+  // setto i valori del form, posso inserire anche i singoli valori
+  public patchFormValues() {
+    this.form.patchValue({
+      'userData': {
+        'username': 'ciao sono io'
+      }
+    });
+  }
+
+
   // validatore custom - scateno un errore se inserisco un nome vietato
   private forbiddenNamesValidator(control: FormControl): {[s: string]: boolean} {
     if(this.forbiddenNames.indexOf(control.value) !== -1) {
@@ -86,6 +109,15 @@ export class ReactiveFormExampleComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
     console.log(this.form);
+    this.resetForm();
+  }
+
+  // resetto il form, posso inserire un oggetto per popolare i campi al reset
+  // imposto il radioButton
+  // da angular 13 posso inserire al new FormControl('male', {initalValueIsDefault: true})
+  // così posso usare solo reset() e imposta il campo di default
+  public resetForm() {
+    this.form.reset({'gender': 'male'});
   }
 
 }

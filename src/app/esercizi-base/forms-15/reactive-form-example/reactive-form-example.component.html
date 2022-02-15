@@ -37,6 +37,11 @@
             </div>
             <span class="help-block" *ngIf="!form.valid && form.touched">Form invalid</span>
             <button class="btn btn-primary" type="submit">Submit</button>
+            <div>
+                <button type="button" class="btn btn-secondary" (click)="setFormValues()">Set Form Values</button>
+                <button type="button" class="btn btn-secondary" (click)="patchFormValues()">Patch Form Value</button>
+                <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+            </div>
         </form>
     </div>
 </div>
