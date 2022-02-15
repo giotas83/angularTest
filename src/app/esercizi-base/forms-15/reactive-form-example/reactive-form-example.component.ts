@@ -64,6 +64,9 @@ export class ReactiveFormExampleComponent implements OnInit, OnDestroy {
   }
 
   // setto i valori del form, sono abbligato a inserire tutto il formGroup
+  // utilizzate opzioni:
+  // onlySelf: When true, each change only affects this control, and not its parent. Default is false.
+  // emitEvent: When true or not supplied (the default), both the statusChanges and valueChanges observables emit events with the latest status and value when the control value is updated. When false, no events are emitted.
   public setFormValues() {
     // (<FormArray>this.form.get('hobbies')).push(new FormControl(null)); se voglio aggiungere in hobbies prima devo aggiungere il formControl
     this.form.setValue({
@@ -73,7 +76,7 @@ export class ReactiveFormExampleComponent implements OnInit, OnDestroy {
       },
       'gender': 'female',
       'hobbies': [] // ['calcio']  se voglio aggiungere un valore
-    });
+    }, {onlySelf: false, emitEvent: true}); // utilizzate opzioni
   }
 
   // setto i valori del form, posso inserire anche i singoli valori
