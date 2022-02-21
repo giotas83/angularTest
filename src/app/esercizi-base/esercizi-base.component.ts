@@ -15,7 +15,8 @@ export class EserciziBaseComponent implements OnInit {
     SERVICES: 'services',
     ROUTING: 'routing',
     OBSERVABLE: 'observable',
-    FORMS: 'forms'
+    FORMS: 'forms',
+    PIPES: 'pipes'
   };
 
   public eserciziDaMostrare: TipoEserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.BASICS;
@@ -62,6 +63,12 @@ export class EserciziBaseComponent implements OnInit {
       label: 'FORMS',
       click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.FORMS; },
       tipoEsercizio: this.ESERCIZI_DA_MOSTRARE.FORMS
+    },
+    {
+      style: 'margin-right: 5px;',
+      label: 'PIPES',
+      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.PIPES; },
+      tipoEsercizio: this.ESERCIZI_DA_MOSTRARE.PIPES
     }
   ];
 
@@ -93,7 +100,7 @@ export class EserciziBaseComponent implements OnInit {
 
 }
 
-type TipoEserciziDaMostrare = 'basics' | 'data-binding' | 'directives' | 'services' | 'observable' | 'routing' | 'forms';
+type TipoEserciziDaMostrare = 'basics' | 'data-binding' | 'directives' | 'services' | 'observable' | 'routing' | 'forms' | 'pipes';
 
 interface ITipoEserciziDaMostrare {
   BASICS: TipoEserciziDaMostrare;
@@ -103,5 +110,6 @@ interface ITipoEserciziDaMostrare {
   ROUTING: TipoEserciziDaMostrare;
   OBSERVABLE: TipoEserciziDaMostrare;
   FORMS: TipoEserciziDaMostrare;
+  PIPES: TipoEserciziDaMostrare;
 }
 
