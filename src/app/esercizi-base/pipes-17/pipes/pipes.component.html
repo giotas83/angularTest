@@ -1,1 +1,23 @@
-<p>pipes works!</p>
+<h4>PIPES</h4>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <label> FILTERED STATUS (stable/critical/offline)
+            <input type="text" [(ngModel)]="filteredStatus">
+        </label>
+        <br>
+        <h4>App Status (async pipe): {{ appStatus | async}}</h4>
+        <hr>
+        <ul class="list-group">
+            <li class="list-group-item" 
+                *ngFor="let server of servers | filterPipe:filteredStatus:'status'"
+                [ngClass]="getStatusClasses(server)"
+            >
+                <span class="badge">{{server.status}}</span>
+                <strong>{{ server.name | shortenPipe:8 }}</strong> |
+                 {{server.instanceType | uppercase}} |
+                 {{server.started | date:'fullDate' | uppercase}}
+            </li>
+        </ul>
+    </div>
+</div>

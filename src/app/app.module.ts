@@ -42,6 +42,8 @@ import { TemplateDrivenExampleComponent } from './esercizi-base/forms-15/templat
 import { ReactiveFormExampleComponent } from './esercizi-base/forms-15/reactive-form-example/reactive-form-example.component';
 import { TestInputComponent } from './esercizi-base/forms-15/template-driven-example/test-input.component';
 import { PipesComponent } from './esercizi-base/pipes-17/pipes/pipes.component';
+import { ShortenPipe } from './esercizi-base/pipes-17/pipes/shorten.pipe';
+import { FilterPipe } from './esercizi-base/pipes-17/pipes/filter.pipe';
 
 
 @NgModule({
@@ -82,7 +84,9 @@ import { PipesComponent } from './esercizi-base/pipes-17/pipes/pipes.component';
     TemplateDrivenExampleComponent,
     ReactiveFormExampleComponent,
     TestInputComponent,
-    PipesComponent
+    PipesComponent,
+    ShortenPipe,
+    FilterPipe
 
 
   ],
