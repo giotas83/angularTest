@@ -1,1 +1,51 @@
-<p>http works!</p>
+<p class="desc-container">
+    Installare json-server con il comando:<br>
+    <code>npm i -g json-server</code><br>
+    creare un file <b>db.json</b>
+    Mettersi nella cartella dove è stato creato il file e lanciare il server con il comando:<br>
+    <code>json-server --watch db.json</code><br>
+    Richiede node da 12 in su ...
+    link: https://github.com/typicode/json-server<br>
+    Per qursto test ho creato un file json nella cartella assets e basta
+</p>
+<hr>
+<div class="row">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="col-12">
+            <label for="title">Title</label>
+            <input type="text" id="title" formControlName="title">
+        </div>
+        <div class="col-12">
+            <label for="content">Body</label>
+            <input type="text" id="body" formControlName="body">
+        </div>
+        <div class="col-12">
+            <button type="submit" [disabled]="!form.valid">Send Post</button>
+        </div>
+        <hr>
+        <div class="col-12">
+            <button type="button">Fetch Post</button> | 
+            <button type="button" (click)="onDeleteAll()">Clear All Posts</button>
+        </div>
+        <div class="col-12">
+            <table *ngIf="posts">
+                <thead>
+                    <tr>
+                        <td>TITLE</td>
+                        <td>BODY</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let post of posts">
+                        <td>{{post.title}}</td>
+                        <td>{{post.body}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+
+<div class="loader-container" *ngIf="loading">
+    <div class="loader"></div>
+</div>

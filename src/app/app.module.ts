@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -45,6 +45,8 @@ import { FilterPipe } from './esercizi-base/pipes-17/filter.pipe';
 import { PipesComponent } from './esercizi-base/pipes-17/pipes.component';
 import { ShortenPipe } from './esercizi-base/pipes-17/shorten.pipe';
 import { HttpComponent } from './esercizi-base/http-18/http.component';
+import { ExerciseAuthInterceptorService } from './esercizi-base/http-18/exercise-auth-interceptor.service';
+import { ExerciseSecondInterceptorRespService } from './esercizi-base/http-18/exercise-second-interceptor-resp.service';
 
 
 
@@ -97,9 +99,14 @@ import { HttpComponent } from './esercizi-base/http-18/http.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    // exercise primo intercettore
+    {provide: HTTP_INTERCEPTORS, useClass: ExerciseAuthInterceptorService, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: ExerciseSecondInterceptorRespService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
