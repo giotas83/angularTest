@@ -12,7 +12,7 @@ export class RecipeService {
     public recipesChangedObserv: Observable<Recipe[]> = this.recipesChangedSubj.asObservable();
 
 
-    private recipes: Recipe[] = [
+    /* private recipes: Recipe[] = [
         new Recipe('A Test Recipe',
             'recipe test description',
             'assets/images/dcs-image-black.jpg',
@@ -21,10 +21,17 @@ export class RecipeService {
             'recipe test description 2',
             'assets/images/dcs-image-black.jpg',
             [new Ingredient('Tomato', 2), new Ingredient('Apple', 6)])
-    ];
+    ]; */
+
+    private recipes: Recipe[] = []
 
     constructor(private shoppingListServices: ShoppingListService) {
 
+    }
+
+    setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes;
+        this.recipesChangedSubj.next(this.recipes.slice());
     }
 
     getRecipe(index: number): Recipe {

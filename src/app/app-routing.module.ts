@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './app-project/page-not-found/page-not-found.component';
 import { RecipeDetailComponent } from './app-project/recipes/recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from './app-project/recipes/recipe-edit/recipe-edit.component';
+import { RecipeResolverService } from './app-project/recipes/recipe-resolver.service';
 import { RecipeStartComponent } from './app-project/recipes/recipe-start/recipe-start.component';
 import { RecipesComponent } from './app-project/recipes/recipes.component';
 import { ShoppingListComponent } from './app-project/shopping-list/shopping-list.component';
@@ -17,10 +18,10 @@ const routes: Routes = [
   // ROTTE APP
   { path: '', pathMatch: 'full', redirectTo: '/recipes'},
   { path: 'recipes', component: RecipesComponent, children: [
-      { path: '', component: RecipeStartComponent},
+      { path: '', component: RecipeStartComponent, resolve: [RecipeResolverService]},
       { path: 'new', component: RecipeEditComponent},
-      { path: ':id', component: RecipeDetailComponent},
-      { path: ':id/edit', component: RecipeEditComponent}
+      { path: ':id', component: RecipeDetailComponent, resolve: [RecipeResolverService]},
+      { path: ':id/edit', component: RecipeEditComponent,  resolve: [RecipeResolverService]}
     ]
   },
   { path: 'shopping-list', component: ShoppingListComponent},

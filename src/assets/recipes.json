@@ -1,0 +1,55 @@
+[
+    {
+        "name":"A Test Recipe",
+        "description":"recipe test description",
+        "imagePath":"assets/images/dcs-image-black.jpg",
+        "ingredients":[
+            {
+                "name":"Apples",
+                "amounth":2
+            },
+            {
+                "name":"toast",
+                "amounth":2
+            }
+        ]
+    },
+    {
+        "name":"A Test Recipe 2 ",
+        "description":"recipe test description 2",
+        "imagePath":"assets/images/dcs-image-black.jpg",
+        "ingredients":[
+            {
+                "name":"Tomato",
+                "amounth":2
+            },
+            {
+                "name":"Apple",
+                "amounth":6
+            }
+        ]
+    },
+    {
+        "name":"A Test Recipe 3 ",
+        "description":"recipe test description 3",
+        "imagePath":"assets/images/dcs-image-black.jpg",
+        "ingredients":[
+            {
+                "name":"Tomato",
+                "amounth":4
+            },
+            {
+                "name":"Apple",
+                "amounth":2
+            },
+            {
+                "name":"Banana",
+                "amounth":2
+            },
+            {
+                "name":"Pera",
+                "amounth":1
+            }
+        ]
+    }
+]
