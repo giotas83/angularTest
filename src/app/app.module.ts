@@ -47,6 +47,7 @@ import { ShortenPipe } from './esercizi-base/pipes-17/shorten.pipe';
 import { HttpComponent } from './esercizi-base/http-18/http.component';
 import { ExerciseAuthInterceptorService } from './esercizi-base/http-18/exercise-auth-interceptor.service';
 import { ExerciseSecondInterceptorRespService } from './esercizi-base/http-18/exercise-second-interceptor-resp.service';
+import { AuthComponent } from './app-project/auth/auth.component';
 
 
 
@@ -91,7 +92,8 @@ import { ExerciseSecondInterceptorRespService } from './esercizi-base/http-18/ex
     PipesComponent,
     ShortenPipe,
     FilterPipe,
-    HttpComponent
+    HttpComponent,
+    AuthComponent
 
 
   ],
