@@ -48,6 +48,7 @@ import { HttpComponent } from './esercizi-base/http-18/http.component';
 import { ExerciseAuthInterceptorService } from './esercizi-base/http-18/exercise-auth-interceptor.service';
 import { ExerciseSecondInterceptorRespService } from './esercizi-base/http-18/exercise-second-interceptor-resp.service';
 import { AuthComponent } from './app-project/auth/auth.component';
+import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
 
 
 
@@ -93,7 +94,8 @@ import { AuthComponent } from './app-project/auth/auth.component';
     ShortenPipe,
     FilterPipe,
     HttpComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSpinnerComponent
 
 
   ],
