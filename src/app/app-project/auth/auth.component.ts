@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthResponse, AuthService } from './auth.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +18,7 @@ export class AuthComponent implements OnInit {
 
   authObservable: Observable<AuthResponse>;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -45,6 +46,8 @@ export class AuthComponent implements OnInit {
     this.authObservable.subscribe( resp => {
       console.log(resp);
       this.isLoading = false;
+      // autenticazione ok, vado nel compinente ricette
+      this.router.navigate(['/recipes']);
     },
     err => {
       this.errorHandler(err);

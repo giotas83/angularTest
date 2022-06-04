@@ -1,16 +1,23 @@
+import { Subject } from 'rxjs';
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError } from "rxjs/operators";
+import { catchError, tap } from "rxjs/operators";
+import { User } from './user.model';
 
 export interface AuthResponse {
     token: string;
+    email: string,
+    localId: string,
+    expiresIn: string // scandenza token, secondi
 }
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
     private readonly fakeUrl: string= 'assets/auth-signup.json';
+
+    public user: Subject<User> = new Subject<User>();
 
     constructor(private http: HttpClient) {
 
@@ -21,7 +28,10 @@ export class AuthService {
     signup(email: string, password: string): Observable<AuthResponse> {
         return this.http.post<AuthResponse>(this.fakeUrl, {email: email, password: password} )
             .pipe(
-                catchError( err => this.http.get<AuthResponse>(this.fakeUrl))
+                catchError( err => this.http.get<AuthResponse>(this.fakeUrl)),
+                tap( res => {
+                   this.handleAuthentication(res.email, res.localId, res.token, +res.expiresIn);
+                })
             )
     }
 
@@ -30,7 +40,16 @@ export class AuthService {
     login(email: string, password: string): Observable<AuthResponse> {
         return this.http.post<AuthResponse>(this.fakeUrl, {email: email, password: password})
             .pipe(
-                catchError( err => this.http.get<AuthResponse>(this.fakeUrl))
+                catchError( err => this.http.get<AuthResponse>(this.fakeUrl)),
+                tap( res => {
+                    this.handleAuthentication(res.email, res.localId, res.token, +res.expiresIn);
+                })
             )
+    }
+
+    handleAuthentication(email: string, id: string, token: string, expirationSecond: number) {
+        const expirationDate = new Date(new Date().getTime() + expirationSecond*1000); // aggiungo alla data di oggi i millisecondi di scadenza, data+scadenza
+        const user = new User(email, id, token, expirationDate);
+        this.user.next(user);
     }
 }
