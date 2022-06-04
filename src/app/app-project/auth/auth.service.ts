@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -17,7 +17,7 @@ export class AuthService {
 
     private readonly fakeUrl: string= 'assets/auth-signup.json';
 
-    public userSubj: Subject<User> = new Subject<User>();
+    public userSubj: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
     constructor(private http: HttpClient) {
 

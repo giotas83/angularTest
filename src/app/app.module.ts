@@ -49,6 +49,7 @@ import { ExerciseAuthInterceptorService } from './esercizi-base/http-18/exercise
 import { ExerciseSecondInterceptorRespService } from './esercizi-base/http-18/exercise-second-interceptor-resp.service';
 import { AuthComponent } from './app-project/auth/auth.component';
 import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptorService } from './app-project/auth/auth-interceptor.service';
 
 
 
@@ -108,8 +109,9 @@ import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinn
   ],
   providers: [
     // exercise primo intercettore
-    {provide: HTTP_INTERCEPTORS, useClass: ExerciseAuthInterceptorService, multi: true},
-    { provide: HTTP_INTERCEPTORS, useClass: ExerciseSecondInterceptorRespService, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: ExerciseAuthInterceptorService, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}, // inserisce il token
+    { provide: HTTP_INTERCEPTORS, useClass: ExerciseSecondInterceptorRespService, multi: true},
   ],
   bootstrap: [AppComponent]
 })
