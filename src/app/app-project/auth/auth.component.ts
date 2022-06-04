@@ -1,6 +1,8 @@
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AuthResponse, AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -11,7 +13,9 @@ export class AuthComponent implements OnInit {
 
   isLoginMode = true;
   isLoading = false;
-  error: string = null;
+  errorMessage: string = null;
+
+  authObservable: Observable<AuthResponse>;
 
   constructor(private authService: AuthService) { }
 
@@ -30,26 +34,31 @@ export class AuthComponent implements OnInit {
     const em = form.value.email;
     const pass = form.value.password;
 
+    this.errorMessage = null;
     if(this.isLoginMode) {
-
+      this.authObservable = this.authService.login(em, pass);
     } else {
-      this.signup(em, pass);
+      this.authObservable =  this.authService.signup(em, pass);
     }
-   
     form.reset();
-  }
 
-  signup(email: string, pass: string) {
-    this.isLoading = true;
-    this.authService.signup(email, pass).subscribe( res => {
-      console.log(res);
+    this.authObservable.subscribe( resp => {
+      console.log(resp);
       this.isLoading = false;
     },
     err => {
-      console.log(err);
-      this.error = 'An error occurred!'
-      this.isLoading = false;
-    })
+      this.errorHandler(err);
+    });
+  }
+
+  errorHandler(error: HttpErrorResponse) {
+    console.log(error);
+    if(error && error.message) {
+      this.errorMessage = error.message
+    } else {
+      this.errorMessage = 'An error occurred!'
+    }
+    this.isLoading = false;
   }
 
 }
