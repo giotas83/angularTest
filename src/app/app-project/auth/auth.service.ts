@@ -17,7 +17,7 @@ export class AuthService {
 
     private readonly fakeUrl: string= 'assets/auth-signup.json';
 
-    public user: Subject<User> = new Subject<User>();
+    public userSubj: Subject<User> = new Subject<User>();
 
     constructor(private http: HttpClient) {
 
@@ -50,6 +50,6 @@ export class AuthService {
     handleAuthentication(email: string, id: string, token: string, expirationSecond: number) {
         const expirationDate = new Date(new Date().getTime() + expirationSecond*1000); // aggiungo alla data di oggi i millisecondi di scadenza, data+scadenza
         const user = new User(email, id, token, expirationDate);
-        this.user.next(user);
+        this.userSubj.next(user);
     }
 }
