@@ -20,6 +20,8 @@ export class AuthService {
 
     public userSubj: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
+    private tokenExpirationTimer: any;
+
     constructor(private http: HttpClient, private router: Router) {
 
     }
@@ -57,12 +59,18 @@ export class AuthService {
         const user = new User(email, id, token, expirationDate);
         this.userSubj.next(user);
         localStorage.setItem('userData', JSON.stringify(user));
+        // avvio l'autodisconnessione utilizzando i secondi della scadenza
+        this.autologout(expirationSecond*1000);
     }
 
     logout() {
         this.userSubj.next(null);
         this.router.navigate(['/auth']);
         localStorage.removeItem('userData');
+        if(this.tokenExpirationTimer) {
+            clearTimeout(this.tokenExpirationTimer);
+        }
+        this.tokenExpirationTimer = null;
     }
 
     /**
@@ -82,6 +90,22 @@ export class AuthService {
         if(loadedUser.token) {
             this.userSubj.next(loadedUser);
         }
+
+        // avvio l'autodisconnessione, i millisecondi devo calcolarli in base alla data che mi arriva
+        // datascadenza - data attuale ho i millisecondi ancora rimasti
+        const millisecToDisconn = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+        this.autologout(millisecToDisconn);
+    }
+
+    /**
+     * disconnessione automatica, aggiungo un timer che dopo un tot esegue la disconnessione
+     * in input i millisecondi dopo i quali avviene la disconnessione
+     * salvo nella variabile tokenExpirationTimer, così al logout blocco il setTimeout
+     */
+    autologout(expirationDuration: number) {
+       this.tokenExpirationTimer = setTimeout(()=> {
+            this.logout();
+        }, expirationDuration)
     }
 
 
