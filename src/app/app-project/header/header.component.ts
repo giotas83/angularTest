@@ -38,5 +38,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.dataStorageService.fetchRecipes().subscribe();
     }
 
+    logout() {
+        this.authServ.logout();
+    }
+
 }
 

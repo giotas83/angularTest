@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from "rxjs/operators";
 import { User } from './user.model';
+import { Router } from '@angular/router';
 
 export interface AuthResponse {
     token: string;
@@ -19,8 +20,13 @@ export class AuthService {
 
     public userSubj: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
 
+    }
+
+    logout() {
+        this.userSubj.next(null);
+        this.router.navigate(['/auth']);
     }
 
     // registrazione fake, ritorna un token
