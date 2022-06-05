@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
+import { AuthGuardService } from './app-project/auth/auth-guard.service';
 import { AuthComponent } from './app-project/auth/auth.component';
 import { PageNotFoundComponent } from './app-project/page-not-found/page-not-found.component';
 import { RecipeDetailComponent } from './app-project/recipes/recipe-detail/recipe-detail.component';
@@ -18,7 +19,11 @@ import { RoutingAccessComponent } from './esercizi-base/routing-11/routing-acces
 const routes: Routes = [
   // ROTTE APP
   { path: '', pathMatch: 'full', redirectTo: '/recipes'},
-  { path: 'recipes', component: RecipesComponent, children: [
+  {
+    path: 'recipes', 
+    component: RecipesComponent,
+    canActivate: [AuthGuardService],
+    children: [
       { path: '', component: RecipeStartComponent, resolve: [RecipeResolverService]},
       { path: 'new', component: RecipeEditComponent},
       { path: ':id', component: RecipeDetailComponent, resolve: [RecipeResolverService]},
