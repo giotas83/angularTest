@@ -11,9 +11,11 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     }
 
+    // intercetto le request e aggiungo il tocken recuperato durante il login
+    // prima recupero l'user dall authservice, viene creato al login, poi con exhaustMap, aspetto che
+    // il primo subscribe vada a buon fine per eseguire il secondo mettendo il token nell header nelle chiamate,
+    // next.handle restituisce un observable
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
-        // intercetto le request e aggiungo il tocken recuperato durante il login,
         return this.authService.userSubj
             .pipe(
                take(1),
