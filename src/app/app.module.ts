@@ -50,6 +50,7 @@ import { ExerciseSecondInterceptorRespService } from './esercizi-base/http-18/ex
 import { AuthComponent } from './app-project/auth/auth.component';
 import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './app-project/auth/auth-interceptor.service';
+import { AlertDynamicComponent } from 'src/shared/dynamic-alert-component/alert-dynamic.component';
 
 
 
@@ -96,7 +97,8 @@ import { AuthInterceptorService } from './app-project/auth/auth-interceptor.serv
     FilterPipe,
     HttpComponent,
     AuthComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    AlertDynamicComponent
 
 
   ],
