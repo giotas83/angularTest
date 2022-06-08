@@ -23,6 +23,7 @@ export class RecipeService {
             [new Ingredient('Tomato', 2), new Ingredient('Apple', 6)])
     ]; */
 
+// in atterraggio prendo recipes dal resolve della rotta
     private recipes: Recipe[] = []
 
     constructor(private shoppingListServices: ShoppingListService) {
