@@ -17,7 +17,8 @@ export class EserciziBaseComponent implements OnInit {
     OBSERVABLE: 'observable',
     FORMS: 'forms',
     PIPES: 'pipes',
-    HTTP: 'http'
+    HTTP: 'http',
+    DYNAMIC: 'dynamic'
   };
 
   public eserciziDaMostrare: TipoEserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.BASICS;
@@ -76,6 +77,12 @@ export class EserciziBaseComponent implements OnInit {
       label: 'HTTP',
       click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.HTTP; },
       tipoEsercizio: this.ESERCIZI_DA_MOSTRARE.HTTP
+    },
+    {
+      style: 'margin-right: 5px;',
+      label: 'DYNAMIC COMPONENT',
+      click: () => { this.eserciziDaMostrare = this.ESERCIZI_DA_MOSTRARE.DYNAMIC; },
+      tipoEsercizio: this.ESERCIZI_DA_MOSTRARE.DYNAMIC
     }
   ];
 
@@ -107,7 +114,7 @@ export class EserciziBaseComponent implements OnInit {
 
 }
 
-type TipoEserciziDaMostrare = 'basics' | 'data-binding' | 'directives' | 'services' | 'observable' | 'routing' | 'forms' | 'pipes' | 'http';
+type TipoEserciziDaMostrare = 'basics' | 'data-binding' | 'directives' | 'services' | 'observable' | 'routing' | 'forms' | 'pipes' | 'http' | 'dynamic';
 
 interface ITipoEserciziDaMostrare {
   BASICS: TipoEserciziDaMostrare;
@@ -119,5 +126,6 @@ interface ITipoEserciziDaMostrare {
   FORMS: TipoEserciziDaMostrare;
   PIPES: TipoEserciziDaMostrare;
   HTTP: TipoEserciziDaMostrare;
+  DYNAMIC: TipoEserciziDaMostrare;
 }
 

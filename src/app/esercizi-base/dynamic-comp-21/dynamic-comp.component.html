@@ -1,0 +1,13 @@
+<h3>dynamic-component</h3>
+
+<div>
+    <p>Premi qui per mostrare un alert dinamico  usando un servizio con factory resolver</p>
+    <button type="button" (click)="onShowDynamicAlert()">Show Alert</button>
+</div>
+<div>
+    <p>Premi qui per mostrare un alert dinamico, senza usare il servizio, ma con tutta la logica nel metodo</p>
+    <button type="button" (click)="onShowDynamicAlertNoService()">Show Alert</button>
+</div>
+
+<!-- qui creo l'ancora dove mostrare il componente, usando la direttiva che prende la view Component Ref -->
+<ng-template segnapostoDynamicCmp></ng-template>

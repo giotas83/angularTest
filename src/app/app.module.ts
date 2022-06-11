@@ -52,6 +52,7 @@ import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinn
 import { AuthInterceptorService } from './app-project/auth/auth-interceptor.service';
 import { AlertDynamicComponent } from 'src/shared/dynamic-alert-component/alert-dynamic.component';
 import { SegnapostoDynamicDirective } from 'src/shared/dynamic-alert-component/segnaposto-dynamic.directive';
+import { DynamicCompComponent } from './esercizi-base/dynamic-comp-21/dynamic-comp.component';
 
 
 
@@ -100,7 +101,8 @@ import { SegnapostoDynamicDirective } from 'src/shared/dynamic-alert-component/s
     AuthComponent,
     LoadingSpinnerComponent,
     AlertDynamicComponent,
-    SegnapostoDynamicDirective
+    SegnapostoDynamicDirective,
+    DynamicCompComponent
 
 
   ],
