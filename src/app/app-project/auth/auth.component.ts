@@ -1,9 +1,11 @@
 import { NgForm } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthResponse, AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { SegnapostoDynamicDirective } from 'src/shared/dynamic-alert-component/segnaposto-dynamic.directive';
+import { DynamicComponentService } from 'src/shared/dynamic-alert-component/dynamic-component.service';
 
 @Component({
   selector: 'app-auth',
@@ -18,7 +20,9 @@ export class AuthComponent implements OnInit {
 
   authObservable: Observable<AuthResponse>;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  @ViewChild(SegnapostoDynamicDirective, {static: false}) alertHost: SegnapostoDynamicDirective; // riferimento alla direttiva
+
+  constructor(private authService: AuthService, private router: Router, private dynamicCmpService: DynamicComponentService) { }
 
   ngOnInit() {
   }
@@ -54,7 +58,7 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  errorHandler(error: HttpErrorResponse) {
+  errorHandler(error?: HttpErrorResponse) {
     console.log(error);
     if(error && error.message) {
       this.errorMessage = error.message
@@ -62,6 +66,8 @@ export class AuthComponent implements OnInit {
       this.errorMessage = 'An error occurred!'
     }
     this.isLoading = false;
+    // avvio componente dinamico
+    this.dynamicCmpService.showDynamicAlert(this.errorMessage, this.alertHost);
   }
 
 }

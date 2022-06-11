@@ -51,6 +51,7 @@ import { AuthComponent } from './app-project/auth/auth.component';
 import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './app-project/auth/auth-interceptor.service';
 import { AlertDynamicComponent } from 'src/shared/dynamic-alert-component/alert-dynamic.component';
+import { SegnapostoDynamicDirective } from 'src/shared/dynamic-alert-component/segnaposto-dynamic.directive';
 
 
 
@@ -98,7 +99,8 @@ import { AlertDynamicComponent } from 'src/shared/dynamic-alert-component/alert-
     HttpComponent,
     AuthComponent,
     LoadingSpinnerComponent,
-    AlertDynamicComponent
+    AlertDynamicComponent,
+    SegnapostoDynamicDirective
 
 
   ],
@@ -115,6 +117,7 @@ import { AlertDynamicComponent } from 'src/shared/dynamic-alert-component/alert-
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}, // inserisce il token
     { provide: HTTP_INTERCEPTORS, useClass: ExerciseSecondInterceptorRespService, multi: true},
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AlertDynamicComponent]
 })
 export class AppModule { }

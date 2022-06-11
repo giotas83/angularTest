@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 @Component({
     selector:'app-dynamic-alert',
@@ -7,7 +7,7 @@ import { Component, Input } from "@angular/core";
         <div class="alert-box">
             <p>{{message}}</p>
             <div class="alert-box-actions">
-                <button class="btn btn-primary">Close</button>
+                <button class="btn btn-primary" (click)="onClose()">Close</button>
             </div>
         </div>
     `,
@@ -32,15 +32,22 @@ import { Component, Input } from "@angular/core";
             box-shadow: 0px 2px 8px rgba(0,0,0,0.26); 
         }
         .alert-box-actions {
-            text-aligh: right;
+            text-align: right;
         }
     `]
 })
-export class AlertDynamicComponent {
+export class AlertDynamicComponent { // va messo in ngModule come entryComponent
 
     @Input() message: string = '';
+    @Output() close: EventEmitter<void> = new EventEmitter<void>();
 
     constructor() {
 
     }
+
+    onClose() {
+        this.close.emit();
+    }
+
+
 }
