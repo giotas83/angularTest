@@ -1,0 +1,44 @@
+<h3>Appunti build</h3>
+
+<div class="appunti">
+    <p>
+        <b>AOT</b>: (Ahead-of-time compilation) ->  converte il codice Angular HTML e TypeScript in codice JavaScript efficiente durante la fase di compilazione prima che 
+        il browser scarichi ed esegua quel codice. La compilazione dell'applicazione durante il processo di compilazione fornisce un rendering più veloce nel browser.
+        Viene fatta una build, con solo il codice js tradotto per il browser, non viene mandato il compilatore nel browser, quindi il pacchetto
+        inviato è più piccolo, questo tipo di compilazione viene avviata con il comando: ng build --prod (--prod per la produzione), angular non crea un server di sviluppo, compila l'app
+        in pochi file, inserendoli nella cartella Dist, che è possibile distribuire , la compilazione è più precisa e può generare errori con nn vengono visti nella compilazione JIT,
+    </p>
+    <p>
+        <b>JIT</b>: ( just-in-time compilation) -> I componenti angolari vengono compilati principalmente sul browser, il compilatore angolare viene eseguito nel browser in fase di
+        esecuzione, il
+        compilatore fa parte del codice che dal server viene mandato al browser, quindi il pacchetto mandato al browser è più grosso, è utilizzata di default,
+        ed è usata durante lo sviluppo per il debug e l'aggiornamento rapido ad ogni modifica
+        (si avvia con ng serve)
+    </p>
+    <p>
+        <b>Comandi avvio</b>: Quando esegui i comandi CLI ng build (solo build) o ng serve (build e serve localmente), il tipo di compilazione (JIT o AOT) dipende 
+        dal valore della proprietà aot nella configurazione della build specificata in angular.json . Per impostazione predefinita, aot è impostato su true per le nuove applicazioni CLI.
+    </p>
+</div>
+<div class="appunti">
+    <p>
+        <b>Passaggi per build di produzione</b>: 1- controllo delle variabili di ambiente,<br>
+        2- eseguire comando <code>ng build --prod</code> che utilizza la compilazione AOT<br>
+        3- distribuire i file generati sul server, ad esempio un hist statico (server web in grado di servire solo html js css, ma non linguaggi lato server: php node)
+    </p>
+    <p>
+        <b>Variabili di ambiente</b>: Nella cartella environment ci sono 2 files: environment.ts (utilizzato durante lo sviluppo) e environment.prod.ts <br>
+        Qui posso salvare dati come chiave per dei dati che mi serviranno o in sviluppo oppure prod, ad esempio l'url di un Api<br>
+        Per utilizzare i valori salvati basta importarli nel .ts
+        <code> {{'import {environment}  from \'../../../environments/environment'}}</code> in automatico, in base alla build che vado a fare pernderà i dati da environment di sviluppo 
+        o quello di produzione<br>
+        Qui stampo un valore salvato in environment: VALORECHIAVE = {{valore}}
+    </p>
+    <p>
+        <b>Distribuzione</b>: il comando <code>ng build --prod</code> crea i file all interno della cartella dist, cerco su google web server statici, ad esempio uno può essere AWS s3
+        di amazon, serve un account AWS. Oppure si utilizza firebase hosting (https://firebase.google.com/docs/hosting/quickstart) 
+        <a href="https://firebase.google.com/docs/hosting/quickstart" target="_blank">Guida Firebase hosting</a> <br>
+        seguire questa guida per impostare il file index.html in modo da farlo servire dal server 
+        <a href="https://academind.com/tutorials/angular-q-a#how-to-fix-broken-routes-after-deployment" target="_blank">Guida Academind</a>
+    </p>
+</div>
