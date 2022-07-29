@@ -11,7 +11,7 @@ import { SegnapostoDynamicDirective } from 'src/shared/dynamic-alert-component/s
 })
 export class DynamicCompComponent implements OnInit, OnDestroy {
 
-  @ViewChild(SegnapostoDynamicDirective, {static: false}) segnapostoHost: SegnapostoDynamicDirective;
+  @ViewChild(SegnapostoDynamicDirective) segnapostoHost: SegnapostoDynamicDirective;
 
   private closeSubs: Subscription;
 

@@ -1,5 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
 
 /*
 PRIMO INTERCETTORE
@@ -7,6 +8,7 @@ in questo intercettore simulo l'aggiunta di headers in tutte le chiamate
 per simulare l'aggiunta di headers di autenticazione
  */
 
+@Injectable()
 export class ExerciseAuthInterceptorService implements HttpInterceptor {
 
     constructor() {

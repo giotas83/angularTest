@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
 
   authObservable: Observable<AuthResponse>;
 
-  @ViewChild(SegnapostoDynamicDirective, {static: false}) alertHost: SegnapostoDynamicDirective; // riferimento alla direttiva
+  @ViewChild(SegnapostoDynamicDirective) alertHost: SegnapostoDynamicDirective; // riferimento alla direttiva
 
   constructor(private authService: AuthService, private router: Router, private dynamicCmpService: DynamicComponentService) { }
 

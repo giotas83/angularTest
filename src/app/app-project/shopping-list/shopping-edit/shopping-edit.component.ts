@@ -13,7 +13,7 @@ export class ShoppingEditComponent implements OnInit {
 
   // @ViewChild('nameInput', {static: false}) nameInputRef: ElementRef<HTMLInputElement>; // true se voglio vederlo già nell ngOnInit
   // @ViewChild('amountInput', {static: false}) amountInputRef: ElementRef<HTMLInputElement>; // true se voglio vederlo già nell ngOnInit
-  @ViewChild('f', {static: false}) form: NgForm;
+  @ViewChild('f') form: NgForm;
 
   private editingSubscription: Subscription;
 

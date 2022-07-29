@@ -8,7 +8,7 @@ import { FormGroup, NgForm } from '@angular/forms';
 })
 export class TemplateDrivenExampleComponent implements OnInit {
 
-  @ViewChild('f', {static: false}) signupForm: NgForm; // static: true si vadrà già nell ngOnInit
+  @ViewChild('f') signupForm: NgForm; // static: true si vadrà già nell ngOnInit
 
   public submitted: boolean = false;
 
