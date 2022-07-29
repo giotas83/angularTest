@@ -29,9 +29,6 @@ import { LoadingSpinnerComponent } from "./loading-spinner/loading-spinner.compo
         AlertDynamicComponent,
         SegnapostoDynamicDirective,
         HttpClientModule
-    ],
-    entryComponents: [
-        AlertDynamicComponent
     ]
 })
 export class SharedModule {

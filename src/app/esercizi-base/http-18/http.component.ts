@@ -1,6 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Post } from './post-model';
 import { PostRestService } from './post-rest.service';
@@ -12,7 +12,7 @@ import { PostRestService } from './post-rest.service';
 })
 export class HttpComponent implements OnInit, OnDestroy {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   posts: Post[] = [];
   loading = false;
   loaderSubscription: Subscription;
@@ -38,9 +38,9 @@ export class HttpComponent implements OnInit, OnDestroy {
   }
 
   public initForm() {
-    this.form = new FormGroup({
-      'title': new FormControl('', Validators.required),
-      'body': new FormControl('', Validators.required)
+    this.form = new UntypedFormGroup({
+      'title': new UntypedFormControl('', Validators.required),
+      'body': new UntypedFormControl('', Validators.required)
     });
   }
 

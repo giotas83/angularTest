@@ -1,4 +1,4 @@
-import { FormControl } from "@angular/forms";
+import { UntypedFormControl } from "@angular/forms";
 import { Observable } from "rxjs";
 
 
@@ -10,7 +10,7 @@ export class CustomValidators {
 
 
     // validatore custom - scateno un errore se inserisco un nome vietato
-  static forbiddenNamesValidator(control: FormControl): {[s: string]: boolean} {
+  static forbiddenNamesValidator(control: UntypedFormControl): {[s: string]: boolean} {
     if(this.forbiddenNames.indexOf(control.value) !== -1) {
       return {'nameIsForbidden': true};
     }
@@ -18,7 +18,7 @@ export class CustomValidators {
   }
 
     // validatore custom asincrono(se devo chiamare un servizio ad esempio, simulo con setTimeout)
-  static forbiddenEmailsAsyncValidator(control: FormControl): Promise<any> | Observable<any> {
+  static forbiddenEmailsAsyncValidator(control: UntypedFormControl): Promise<any> | Observable<any> {
     return new Promise( (resolve, reject) => {
       setTimeout( () => {
         if(this.forbiddenEmails.indexOf(control.value) !== -1) {

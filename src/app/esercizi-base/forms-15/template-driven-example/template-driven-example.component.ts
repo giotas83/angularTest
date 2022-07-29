@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import { UntypedFormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-template-driven-example',
@@ -69,7 +69,7 @@ export class TemplateDrivenExampleComponent implements OnInit {
 
     // così invece modifico un solo valore senza mpdificare gli altri
     // devo questo metodo è presente nel formGroup, quindi devo accedere li per trovarlo
-    (this.signupForm.form as FormGroup).patchValue({userData: { username: usernameModificato}});
+    (this.signupForm.form as UntypedFormGroup).patchValue({userData: { username: usernameModificato}});
   }
 
   public resetForm(): void {

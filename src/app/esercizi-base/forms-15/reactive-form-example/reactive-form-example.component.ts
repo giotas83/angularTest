@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { CustomValidators } from './customValidators';
 
@@ -10,12 +10,12 @@ import { CustomValidators } from './customValidators';
 })
 export class ReactiveFormExampleComponent implements OnInit, OnDestroy {
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   public genders: string[] = ['male', 'female'];
 
     get hobbiesControls() {
-    return (this.form.get('hobbies') as FormArray).controls;
+    return (this.form.get('hobbies') as UntypedFormArray).controls;
   }
 
   // Subscriptions
@@ -46,19 +46,19 @@ export class ReactiveFormExampleComponent implements OnInit, OnDestroy {
 
   // i validatori sono in una classe statica CustomValidators, fatto così per non appesantire il ts e inserire i metodi qui
   public createForm(): void {
-    this.form = new FormGroup({
-      'userData': new FormGroup({
-        'username': new FormControl(null, [Validators.required, CustomValidators.forbiddenNamesValidator.bind(this)]),
-        'email': new FormControl(null, [Validators.required, Validators.email], CustomValidators.forbiddenEmailsAsyncValidator.bind(this))
+    this.form = new UntypedFormGroup({
+      'userData': new UntypedFormGroup({
+        'username': new UntypedFormControl(null, [Validators.required, CustomValidators.forbiddenNamesValidator.bind(this)]),
+        'email': new UntypedFormControl(null, [Validators.required, Validators.email], CustomValidators.forbiddenEmailsAsyncValidator.bind(this))
       }),
-      'gender': new FormControl('male'),
-      'hobbies': new FormArray([])
+      'gender': new UntypedFormControl('male'),
+      'hobbies': new UntypedFormArray([])
     })
   }
 
   public onAddHobby(): void {
-    const control = new FormControl(null, Validators.required);
-    (<FormArray>this.form.get('hobbies')).push(control);
+    const control = new UntypedFormControl(null, Validators.required);
+    (<UntypedFormArray>this.form.get('hobbies')).push(control);
   }
 
   // setto i valori del form, sono abbligato a inserire tutto il formGroup
