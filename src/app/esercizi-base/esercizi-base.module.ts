@@ -28,6 +28,7 @@ import { AccountComponent } from "./services-depend-injection-9/dependency-injec
 import { DependencyInjectionComponent } from "./services-depend-injection-9/dependency-injection/dependency-injection.component";
 import { NewAccountComponent } from "./services-depend-injection-9/dependency-injection/new-account/new-account.component";
 import { BuildAppuntiComponent } from './build-appunti-23/build-appunti.component';
+import { StandaloneComponentComponent } from './standalone-component-24/standalone-component/standalone-component.component';
 
 const routes: Routes = [
     { path: '',  children: [
@@ -79,7 +80,8 @@ const routes: Routes = [
         FilterPipe,
         HttpComponent,
         DynamicCompComponent,
-        BuildAppuntiComponent
+        BuildAppuntiComponent,
+        StandaloneComponentComponent
     ],
     imports: [
         RouterModule.forChild(routes),
