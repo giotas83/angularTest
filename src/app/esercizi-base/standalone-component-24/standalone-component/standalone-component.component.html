@@ -1,1 +1,118 @@
-<p>standalone-component works!</p>
+<h3>Appunti standalone-component</h3>
+
+<div class="appunti">
+    <p>
+        <b>Componente: </b> sono i componenti standalone e quale problema risolvono.<br>
+        Sono dei componenti che non necessitano di essere dichiarati in un modulo, ad esempio in applicazioni grosse che usano diversi moduli, o un modulo shared
+        devo capire dove dichiarare un componente, con gli standalone non serve. <br>
+        Un componenente standalone può avere una direttiva e un servizio. Viene creato aggiungendo un flag speciale all'oggetto che viene passato al decoratore @Component
+        <br>
+        <code>standalone: true</code><br>
+        Se poi lo utilizzo dentro un altro componente standalone devo
+        dichiararlo nel decoratore del componente (anche lui standalone), negli imports in questo modo:  
+        <code>imports:[FirstStandaloneComponent]</code>. Se invece lo sto utilizzando in un componente normale, che non è standalone, per utilizzarlo
+        deve essere importato nel modulo, negli imports e non nelle declaration
+        Quindi se lo sto utilizzando in un componente normale deve essere messo negli imports del modulo, se invece lo stessi usando in un altro componente standalone non occorre 
+        inserirlo negli imports del modulo, ma solo nell imports del componente in cui è utilizzato.
+    </p><hr>
+    <p>
+        <b>Direttiva: </b>per utilizzare una direttiva all interno di un componente standalone, devo importarla negli imports del componente stesso,
+        (se la direttiva è standalone) altrimenti se non è standalone e ho dichiarato la direttiva in uno 
+        sharedModule, posso importare tutto lo sharedModule
+    </p><hr>
+    <p>
+        <b>Componente root: </b>Se utilizzo tutti componenti standalone quindi non devo importarli nel modulo, ma nell import del componente in cui li uso.
+        Ma come mi comporto con il componente root, app.component.ts ? se anche lui lo dichiero standalone non devo dichiararlo nel modulo, in import.
+        Per far ciò adesso posso cancellare il modulo, anche l'app-module.ts perchè al suo interno non avrò più nulla dichiarato. Devo cambiare il file 
+        main.ts ed eliminare il codice che imposta app.module come root <br>
+        elimino questo <br>
+        <code>platformBrowserDynamic().bootstrapModule(AppModule)<br>
+            .catch(err => console.error(err));</code>
+        Al suo posto devo mettere come root il mio componente radice, app.component, in questo modo<br>
+        <code>
+            {{"import { bootstrapApplication } from '@angular/platform-browser'"}};<br>
+            {{"import { AppComponent } from './app/app.component'"}};<br><br>
+
+            bootstrapApplication(AppComponent);
+        </code>
+    </p><hr>
+    <p>
+        <b>Services: </b>Per utilizzare un servizio in un componenente standalone, se nel servizio non ho definito il provedein: root, posso importarlo nei providers
+        del componente, come si fa normalmente, ma in questo caso il componente avrà la sua istanza del servizio, e non è l'istanza singleton di tutta l'app.
+        Mettiamo che voglio registrare il servizio nei providers del modulo, ma il modulo l'ho cancellato, perchè utilizzo solo componenti standalone, 
+        dove registro il servizio se non utilizzo providein: 'root' ? <br>
+        lo inserisco nel main.ts nel metodo bootstrapApplication dove prima ho dichiarato il componente root dell'applicazione in questo modo
+        <code>
+            {{"import { bootstrapApplication } from '@angular/platform-browser'"}};<br>
+            {{"import { AppComponent } from './app/app.component'"}};<br>
+            {{"import { StandaloneService } from './miopercorso...'"}};<br><br>
+
+            {{"     bootstrapApplication(AppComponent, {providers: [StandaloneService]});     "}}
+        </code>
+        Ma nel servizio che sto usando in quest esempio non importo nulla nell main e uso un semplicissimo providein nel servizio, 
+        per creare il singleton a livello globale
+    </p><hr>
+    <p>
+        <b>Routing: </b> Come utilizzare i componenti standalone con il routing <br>
+        Se non ho il modulo principale, app.module, dove dichiaro il modulo  routerModule con tutti i path al suo interno ? <br>
+        Devo dichierarlo in questo modo nel main.ts, utilizzando un metodo appropriato "importProvidersFrom(nomeModuloRouter)"
+        <code>
+            {{"import { importProvidersFrom } from '@angular/core'"}};<br>
+            {{"import { bootstrapApplication } from '@angular/platform-browser'"}};<br>
+            {{"import { AppComponent } from './app/app.component'"}};<br>
+            {{"import { AppRoutingModule } from './miopercorso...'"}};<br><br>
+
+            {{"     bootstrapApplication(AppComponent, {providers: [importProvidersFrom(AppRoutingModule)]});     "}}
+        </code>
+        questo non basta però, se nel componente standalone utilizzo ad esempio routerLInk nell html, questo non funziona.
+        Devo tenere a mente che un componenente standalone è completamente disaccoppiato da tutti gli imoprts che ci sono in un modulo, sempre se c'è un modulo,
+        qunadi se devo usare routerlink, nel decoratore @component in imports: [] devo importare RouterModule <br>
+        imports: [RouterModule] 
+    </p><hr>
+    <p>
+        <b>Lazy loading: </b>in un modulo Routing per caricare con lazyloading un componente standalone, devo usare una sintassi diversa,
+        poichè i componenti standalone non hanno il modulo. Normalmente per caricare con lazyloading si usa la sintassi<br>
+        <code>
+            path: 'dashboard',<br>
+            loadChildren: ()=> import('/percorso/dashboardModule').then( mod => mod.DashboardModule)
+        </code>
+        Per caricare il componente standalone si utilizza un nuovo metodo, loadComponent
+        <code>
+            path: 'auth',
+            loadComponent: ()=> import('/percorso/authComponent').then( comp => comp.AuthComponent)
+        </code>
+        Quindi la cosa interessante è che posso caricare i componenti in maniera pigra senza bisogno di avvolgerli in un modulo per poterlo fare..<br>
+        Ma adesso, se dovessi convertire un modulo caricato in maniera pigra, con la sintassi dei componenenti standalone, quindi lo elimino, come posso fare ?
+        Ricordiamoci che un modulo caricato pigro ha al suo interno le rotte RouterMOdule.forChild(routes), dove le scrivo ?
+        Posso creare un file chiamato ad esempio, routes.ts e li dentro scrivo una costante da esportare, dove inserisco le rotte
+        <code>
+            <pre>
+                export const DASHBOARD_ROUTES: Route = [
+                    {{'{'}}
+                        path: '',
+                        component: DashboardComponent
+                    {{'}'}},
+                    {{'{'}}
+                        path: 'today',
+                        component: TodayComponent
+                    {{'}'}}
+                ]
+            </pre>
+        </code>
+        Adesso visto che non esiste più il modulo dashboardModule, cambio questo<br>
+        <code>
+            path: 'dashboard',<br>
+            loadChildren: ()=> import('/percorso/dashboardModule').then( mod => mod.DashboardModule)
+        </code>
+        con una nuova sintassi sfruttando la costante DASHBOARD_ROUTES se c'è da fare una navigazione children, quindi invece di ussare loadChildren, per puntare al modulo
+        lo utilizzo per puntare alle rotte<br>
+        <code>
+            path: 'dashboard',<br>
+            loadChildren: ()=> import('/percorso/routes').then( mod => mod.DASHBOARD_ROUTES)
+        </code>
+
+
+    </p>
+    <first-standalone></first-standalone>
+</div>
+

@@ -29,6 +29,7 @@ import { DependencyInjectionComponent } from "./services-depend-injection-9/depe
 import { NewAccountComponent } from "./services-depend-injection-9/dependency-injection/new-account/new-account.component";
 import { BuildAppuntiComponent } from './build-appunti-23/build-appunti.component';
 import { StandaloneComponentComponent } from './standalone-component-24/standalone-component/standalone-component.component';
+import { FirstStandaloneComponent } from "./standalone-component-24/standalone-component/standalone-files/first-standalone.component";
 
 const routes: Routes = [
     { path: '',  children: [
@@ -85,7 +86,8 @@ const routes: Routes = [
     ],
     imports: [
         RouterModule.forChild(routes),
-        SharedModule
+        SharedModule,
+        FirstStandaloneComponent
     ],
     exports: [
 
